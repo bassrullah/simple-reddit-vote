@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Container, Form, FormGroup, Input, Button, UncontrolledAlert} from 'reactstrap'
 import uuidv4 from 'uuid/v4';
 import {connect} from 'react-redux'
-import {  addTopic} from '../actions/topicActions';
+import {addTopic, getTopic} from '../actions/topicActions';
+import '../assets/main.scss'
 
 class AddPost extends Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class AddPost extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  componentDidMount() {
+		this.props.getTopic();
+  }
+  
   componentWillReceiveProps(nextProps) {
 		this.setState({ msg: nextProps.topics.msg });
 		setTimeout(() => this.setState({ msg: '' }), 2000);
@@ -38,7 +43,7 @@ class AddPost extends Component {
   };
 
   render() {
-    const { success } = this.props.topics,
+    const { topics, success } = this.props.topics,
         { msg } = this.state;
     return (
       <Container className="py-5">
@@ -67,8 +72,8 @@ class AddPost extends Component {
 
 
 const actionCreators = {
-	
-	addTopic
+  addTopic,
+  getTopic
 };
 
 const mapStateToProps = (state) => ({

@@ -1,4 +1,4 @@
-import { ADD_TOPIC } from '../actions/types';
+import { ADD_TOPIC, GET_TOPIC} from '../actions/types';
 
 const initialState = {
 	topic: {},
@@ -9,7 +9,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case ADD_TOPIC:
+    case GET_TOPIC:
+			return {
+				...state,
+				topics: action.payload
+			};
+    case ADD_TOPIC:
 			return {
 				...state,
 				topics: action.payload,
