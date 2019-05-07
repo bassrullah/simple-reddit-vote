@@ -1,0 +1,52 @@
+body{
+  background: #f4f4f4;
+}
+
+.header {
+  padding-left: 70px;
+  margin-top: 60px;
+  padding-right: 70px;
+}
+
+p {
+  color: black;
+  margin:0 !important;
+} 
+
+i {
+  color:lightgray;
+}
+
+hr {
+  margin:0px
+}
+
+.btn-secondary2 {
+  background-color: transparent !important;
+  border: 0px !important
+}
+
+.card-border {
+  border: 0px !important;
+  border-radius: 0px !important;
+}
+
+.upvote-counter {
+  color:green;
+}
+
+.downvote-counter {
+  color:red;
+}
+
+.nowrap {
+  white-space: nowrap;
+} 
+
+.response {
+  position: absolute;
+  top:5%;
+  left:35%;
+  width: 30%;
+  z-index: 9999;
+}
