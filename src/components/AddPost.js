@@ -4,6 +4,7 @@ import uuidv4 from 'uuid/v4';
 import {connect} from 'react-redux'
 import {addTopic, getTopic} from '../actions/topicActions';
 import '../assets/main.scss'
+import PostList from '../components/PostList'
 
 class AddPost extends Component {
   constructor(props) {
@@ -59,17 +60,24 @@ class AddPost extends Component {
             <Button className="ml-3 nowrap" color="primary" type="submit">Add Topic</Button>
           </FormGroup>
         </Form>
+        <hr />
         {msg && (
 					<div className="response">
 						<UncontrolledAlert  classname="m-auto clr" color={success ? 'info' : 'danger'}>{msg}</UncontrolledAlert>
 					</div>
-				)}
-        <hr/>
+        )}
+        {topics && (
+					<PostList
+						topics={topics.sort((b, a) => parseInt(a.upvote) - parseInt(b.upvote))}
+						addHandle={this.toggle}
+						upVoteHandle={this.upVoteHandle}
+						downVoteHandle={this.downVoteHandle}
+					/>
+        )}
       </Container>
     )
   }
 }
-
 
 const actionCreators = {
   addTopic,
