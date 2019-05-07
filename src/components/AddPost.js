@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Form, FormGroup, Input, Button, UncontrolledAlert} from 'reactstrap'
 import uuidv4 from 'uuid/v4';
 import {connect} from 'react-redux'
-import {addTopic, getTopic} from '../actions/topicActions';
+import {addTopic, getTopic, upVoteTopic, downVoteTopic } from '../actions/topicActions';
 import '../assets/main.scss'
 import PostList from '../components/PostList'
 
@@ -43,6 +43,14 @@ class AddPost extends Component {
 		this.toggle();
   };
 
+  upVoteHandle = (id) => {
+		this.props.upVoteTopic(id);
+	};
+
+	downVoteHandle = (id) => {
+		this.props.downVoteTopic(id);
+  };
+
   render() {
     const { topics, success } = this.props.topics,
         { msg } = this.state;
@@ -68,10 +76,10 @@ class AddPost extends Component {
         )}
         {topics && (
 					<PostList
-						topics={topics.sort((b, a) => parseInt(a.upvote) - parseInt(b.upvote))}
-						addHandle={this.toggle}
-						upVoteHandle={this.upVoteHandle}
-						downVoteHandle={this.downVoteHandle}
+            topics={topics.sort((b, a) => parseInt(a.upvote) - parseInt(b.upvote))}
+            addHandle={this.toggle}
+            upVoteHandle={this.upVoteHandle}
+            downVoteHandle={this.downVoteHandle}
 					/>
         )}
       </Container>
@@ -81,7 +89,9 @@ class AddPost extends Component {
 
 const actionCreators = {
   addTopic,
-  getTopic
+  getTopic,
+	upVoteTopic,
+	downVoteTopic
 };
 
 const mapStateToProps = (state) => ({
